@@ -4,11 +4,13 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ItemResource\Pages;
 use App\Filament\Resources\ItemResource\RelationManagers;
+use App\Models\Category;
 use App\Models\Item;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -69,17 +71,50 @@ class ItemResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->label('Nama')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('description')->label('Deskripsi')->limit(30),
-                Tables\Columns\TextColumn::make('price')->label('Harga'),
-                Tables\Columns\TextColumn::make('quantity')->label('Jumlah'),
-                Tables\Columns\TextColumn::make('category.name')->label('Kategori'),
-                Tables\Columns\TextColumn::make('supplier.name')->label('Supplier'),
-                Tables\Columns\TextColumn::make('admin.username')->label('Dibuat Oleh'),
-                Tables\Columns\TextColumn::make('created_at')->label('Dibuat Pada')->dateTime()->sortable(),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Nama Item')
+                    ->searchable()
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('description')
+                    ->label('Deskripsi')
+                    ->limit(50),
+
+                Tables\Columns\TextColumn::make('price')
+                    ->label('Harga')
+                    ->money('IDR') // Atau sesuaikan dengan mata uang yang kamu gunakan
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('quantity')
+                    ->label('Jumlah')
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('category.name')
+                    ->label('Kategori')
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('supplier.name')
+                    ->label('Supplier')
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('admin.username')
+                    ->label('Admin Pembuat')
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat Pada')
+                    ->dateTime()
+                    ->sortable(),
             ])
+
             ->filters([
-                //
+                SelectFilter::make('category_id')
+                    ->label('Kategori')
+                    ->options(Category::all()->pluck('name', 'id')->toArray()) // Fetch categories as options
+                    ->default(null),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
