@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -11,9 +12,15 @@ return new class extends Migration
      */
     public function up(): void
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 50)->unique();
+            $table->string('contact_info', 100)->unique();
+            $table->unsignedBigInteger('created_by');
             $table->timestamps();
+            $table->foreign('created_by')->references('id')->on('admins')->onDelete('cascade');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         });
     }
 
