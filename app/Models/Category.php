@@ -8,10 +8,12 @@ class Category extends Model
 {
     protected $guarded = ['id'];
 
+    protected $fillable = ['name', 'description', 'created_by'];
+
     protected $table='categories';
 
     public function admin()
     {
-        return $this->belongsTo(Admin::class, 'username_id');
+        return $this->belongsTo(Admin::class, 'created_by');
     }
 }
