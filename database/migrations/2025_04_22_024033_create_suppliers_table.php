@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50)->unique();
-            $table->string('contact_info', 100)->unique();
+            $table->string('contact_info', 100);
             $table->unsignedBigInteger('created_by');
             $table->timestamps();
             $table->foreign('created_by')->references('id')->on('admins')->onDelete('cascade');

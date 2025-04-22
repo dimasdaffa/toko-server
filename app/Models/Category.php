@@ -16,4 +16,9 @@ class Category extends Model
     {
         return $this->belongsTo(Admin::class, 'created_by');
     }
+
+    public function item()
+    {
+        return $this->hasMany(Item::class, 'name_id');
+    }
 }

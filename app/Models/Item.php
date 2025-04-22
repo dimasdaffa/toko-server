@@ -6,5 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    //
+    protected $guarded = ['id'];
+
+    protected $fillable = ['name', 'description','price','quantity','category_id','supplier_id', 'created_by'];
+
+    protected $table='items';
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'created_by');
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'created_by');
+    }
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class, 'created_by');
+    }
 }
