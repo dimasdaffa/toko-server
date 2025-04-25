@@ -19,6 +19,9 @@ class SupplierResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
+    protected static ?int $navigationSort = 3;
+
+
     public static function form(Form $form): Form
     {
         return $form
@@ -34,7 +37,7 @@ class SupplierResource extends Resource
 
             Forms\Components\Select::make('created_by')
                 ->label('Admin Pembuat')
-                ->relationship('admin', 'username')
+                ->relationship('user', 'name')
                 ->required()
                 ->preload()
                 ->searchable(),
@@ -47,7 +50,7 @@ class SupplierResource extends Resource
         ->columns([
             Tables\Columns\TextColumn::make('name')->label('Nama')->searchable()->sortable(),
             Tables\Columns\TextColumn::make('contact_info')->label('Info Kontak')->limit(30),
-            Tables\Columns\TextColumn::make('admin.username')->label('Dibuat Oleh')->sortable()->searchable(),
+            Tables\Columns\TextColumn::make('user.name')->label('Dibuat Oleh')->sortable()->searchable(),
             // Tables\Columns\TextColumn::make('created_at')->label('Dibuat Pada')->dateTime()->sortable(),
         ])
             ->filters([

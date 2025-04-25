@@ -12,9 +12,9 @@ class Supplier extends Model
 
     protected $table='suppliers';
 
-    public function admin()
+    public function user()
     {
-        return $this->belongsTo(Admin::class, 'created_by');
+        return $this->belongsTo(User::class, 'created_by');
     }
 
     public function item()

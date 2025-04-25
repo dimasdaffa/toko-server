@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('created_by');
             $table->timestamps();
 
-            $table->foreign('created_by')->references('id')->on('admins')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         });
     }

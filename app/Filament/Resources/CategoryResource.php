@@ -5,7 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
-use App\Models\Admin;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -19,6 +19,9 @@ class CategoryResource extends Resource
     protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?int $navigationSort = 2;
+
 
     public static function form(Form $form): Form
     {
@@ -35,7 +38,7 @@ class CategoryResource extends Resource
 
                 Forms\Components\Select::make('created_by')
                     ->label('Admin Pembuat')
-                    ->relationship('admin', 'username')
+                    ->relationship('user', 'name')
                     ->required()
                     ->preload()
                     ->searchable(),
@@ -48,7 +51,7 @@ class CategoryResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')->label('Nama')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('description')->label('Deskripsi')->limit(30),
-                Tables\Columns\TextColumn::make('admin.username')->label('Dibuat Oleh')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('user.name')->label('Dibuat Oleh')->sortable()->searchable(),
                 // Tables\Columns\TextColumn::make('created_at')->label('Dibuat Pada')->dateTime()->sortable(),
             ])
             ->filters([

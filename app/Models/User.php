@@ -23,6 +23,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function categories()
+    {
+        return $this->hasMany(Category::class, 'username_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

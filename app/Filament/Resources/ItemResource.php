@@ -21,6 +21,9 @@ class ItemResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-cube';
 
+    protected static ?int $navigationSort = 4;
+
+
     public static function form(Form $form): Form
     {
         return $form
@@ -60,7 +63,7 @@ class ItemResource extends Resource
 
                 Forms\Components\Select::make('created_by')
                     ->label('Admin Pembuat')
-                    ->relationship('admin', 'username')
+                    ->relationship('user', 'name')
                     ->required()
                     ->preload()
                     ->searchable(),
@@ -99,7 +102,7 @@ class ItemResource extends Resource
                     ->sortable()
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('admin.username')
+                Tables\Columns\TextColumn::make('user.name')
                     ->label('Admin Pembuat')
                     ->sortable()
                     ->searchable(),
