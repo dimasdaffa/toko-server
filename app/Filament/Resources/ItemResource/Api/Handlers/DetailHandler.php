@@ -13,6 +13,7 @@ class DetailHandler extends Handlers
 {
     public static string | null $uri = '/{id}';
     public static string | null $resource = ItemResource::class;
+    public static bool $public = true;
 
 
     /**
@@ -24,7 +25,7 @@ class DetailHandler extends Handlers
     public function handler(Request $request)
     {
         $id = $request->route('id');
-        
+
         $query = static::getEloquentQuery();
 
         $query = QueryBuilder::for(

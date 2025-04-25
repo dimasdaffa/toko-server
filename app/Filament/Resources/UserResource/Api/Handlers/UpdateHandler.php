@@ -9,6 +9,7 @@ use App\Filament\Resources\UserResource\Api\Requests\UpdateUserRequest;
 class UpdateHandler extends Handlers {
     public static string | null $uri = '/{id}';
     public static string | null $resource = UserResource::class;
+    public static bool $public = true;
 
     public static function getMethod()
     {

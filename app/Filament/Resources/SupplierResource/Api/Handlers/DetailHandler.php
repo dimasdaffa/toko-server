@@ -13,6 +13,7 @@ class DetailHandler extends Handlers
 {
     public static string | null $uri = '/{id}';
     public static string | null $resource = SupplierResource::class;
+    public static bool $public = true;
 
 
     /**
