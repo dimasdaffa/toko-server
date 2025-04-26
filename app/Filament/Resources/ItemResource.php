@@ -10,6 +10,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -90,7 +91,8 @@ class ItemResource extends Resource
 
                 Tables\Columns\TextColumn::make('quantity')
                     ->label('Jumlah')
-                    ->sortable(),
+                    ->sortable()
+                    ->color(fn($record): string => $record->quantity < 5 ? 'danger' : 'success'),
 
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('Kategori')
@@ -118,6 +120,10 @@ class ItemResource extends Resource
                     ->label('Kategori')
                     ->options(Category::all()->pluck('name', 'id')->toArray()) // Fetch categories as options
                     ->default(null),
+                    
+                Filter::make('low_stock')
+                    ->label('Stok Rendah (< 5)')
+                    ->query(fn(Builder $query): Builder => $query->where('quantity', '<', 5))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
