@@ -25,20 +25,20 @@ DB_USERNAME=root
 DB_PASSWORD=root
 ```
 
-3. Run migrations to set up the database
-```sh
-php artisan migrate
-```
-
-4. Install Filament Admin Panel
+3. Install Filament Admin Panel
 ```sh
 php artisan make:filament-user
 ```
 Follow the prompts to create an admin user.
 
-5. Create Filament Model & Migration
+4. Create Filament Model & Migration
 ```sh
 php artisan make:model ModelName -m                        
+```
+
+5. Run migrations to set up the database
+```sh
+php artisan migrate
 ```
 
 6. Create Filament Resources
