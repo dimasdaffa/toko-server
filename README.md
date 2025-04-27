@@ -36,22 +36,26 @@ php artisan make:filament-user
 ```
 Follow the prompts to create an admin user.
 
-5. Create Filament Resources
+5. Create Filament Model & Migration
+```sh
+php artisan make:model ModelName -m                        
+```
+
+6. Create Filament Resources
 ```sh
 php artisan make:filament-resource ResourceName
 ```
-Customize the generated resource files in `app/Filament/Resources`.
 
-5. Set up API Service Filament Plugin
+7. Set up API Service Filament Plugin
 
 Refer to the [API Service Plugin Documentation](https://filamentphp.com/plugins/rupadana-api-service) for detailed instructions.
 
-6. Set up Docker for Laravel and MySQL
+8. Set up Docker for Laravel and MySQL
 ```sh
 docker-compose up --build --detach
 ```
 
-7. Seeding Database
+9. Seeding Database
 ```sh
 docker exec laravel_app bash -c "php artisan migrate:fresh --seed"
 ```
