@@ -42,9 +42,9 @@ php artisan make:filament-resource ResourceName
 ```
 Customize the generated resource files in `app/Filament/Resources`.
 
-5. Setup API Service Filament Plugin
-```sh
-Checkout API Documentation https://filamentphp.com/plugins/rupadana-api-service
+5. Set up API Service Filament Plugin
+
+Refer to the [API Service Plugin Documentation](https://filamentphp.com/plugins/rupadana-api-service) for detailed instructions.
 ```
 
 6. Set up Docker for Laravel and MySQL
