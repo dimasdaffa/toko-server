@@ -53,6 +53,12 @@ Refer to the [API Service Plugin Documentation](https://filamentphp.com/plugins/
 docker-compose up --build --detach
 ```
 
+7. Seeding Database
+```sh
+docker exec -it bash
+php artisan migrate:fresh --seed
+```
+
 ## API Documentation
 
 1. Create and read item
