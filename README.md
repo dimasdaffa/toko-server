@@ -44,6 +44,7 @@ Customize the generated resource files in `app/Filament/Resources`.
 
 5. Set up API Service Filament Plugin
 
+```sh
 Refer to the [API Service Plugin Documentation](https://filamentphp.com/plugins/rupadana-api-service) for detailed instructions.
 ```
 
