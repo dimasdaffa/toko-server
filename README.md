@@ -1,4 +1,4 @@
-# Welcome to Filament Laravel Project :rocket:
+# Welcome to Filament Laravel API Project :rocket:
 
 This app uses:
 - **Laravel** -- PHP framework
