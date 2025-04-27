@@ -55,8 +55,7 @@ docker-compose up --build --detach
 
 7. Seeding Database
 ```sh
-docker exec -it bash
-php artisan migrate:fresh --seed
+docker exec laravel_app bash -c "php artisan migrate:fresh --seed"
 ```
 
 ## API Documentation
